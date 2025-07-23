@@ -14,10 +14,8 @@ import { TemplateLocalRefsWithLogicComponent } from './c-template-refs/template-
 import { TemplateDrivenFormComponent } from './d-forms/template-driven-form.component';
 import { ReactiveDrivenFormComponent } from './d-forms/reactive-driven-form.component';
 import { LifecyclePresentationComponent } from './e-lifecycle/lifecycle-presentation.component';
-import {TestMyBehaviourComponent} from './f-testing/test-my-behaviour.component';
-import {
-  DataFromServerSideComponent
-} from './b-dependency-injection/data-from-server-side/data-from-server-side.component';
+import { TestMyBehaviourComponent } from './f-testing/test-my-behaviour.component';
+import { DataFromServerSideComponent } from './b-dependency-injection/data-from-server-side/data-from-server-side.component';
 
 export const routes: Routes = [
   { path: '', component: HelloComponent },
@@ -47,9 +45,32 @@ export const routes: Routes = [
   // F:
   { path: 'to-test', component: TestMyBehaviourComponent },
   // G:
-  { path: 'signals-basics', loadComponent: () => import('./g-signals/components/signals-basics').then(m => m.SignalsBasics) },
-  { path: 'signal-computed', loadComponent: () => import('./g-signals/components/signal-computed').then(m => m.SignalComputed) },
-  { path: 'signal-effect', loadComponent: () => import('./g-signals/components/signal-effect').then(m => m.SignalEffect) },
-  { path: 'signal-store', loadComponent: () => import('./g-signals/components/signal-communication-for-long-distance').then(m => m.SignalCommunicationForLongDistance) },
-
+  {
+    path: 'signals-basics',
+    loadComponent: () =>
+      import('./g-signals/components/signals-basics').then(
+        (m) => m.SignalsBasics,
+      ),
+  },
+  {
+    path: 'signal-computed',
+    loadComponent: () =>
+      import('./g-signals/components/signal-computed').then(
+        (m) => m.SignalComputed,
+      ),
+  },
+  {
+    path: 'signal-effect',
+    loadComponent: () =>
+      import('./g-signals/components/signal-effect').then(
+        (m) => m.SignalEffect,
+      ),
+  },
+  {
+    path: 'signal-store',
+    loadComponent: () =>
+      import(
+        './g-signals/components/signal-communication-for-long-distance'
+      ).then((m) => m.SignalCommunicationForLongDistance),
+  },
 ];

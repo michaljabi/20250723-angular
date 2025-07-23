@@ -90,4 +90,8 @@ import { RouterLink } from '@angular/router';
     </nav>
   `,
 })
-export class MenuComponent {}
+export class MenuComponent {
+  constructor() {
+    console.log('!');
+  }
+}
