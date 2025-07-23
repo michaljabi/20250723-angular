@@ -1,0 +1,5 @@
+*.pdf
+.idea
+
+node_modules
+dist
