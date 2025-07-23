@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MenuComponent } from './menu.component';
-import { SampleCounterComponent } from './sample-counter/sample-counter';
+import { SampleCounter } from './sample-counter/sample-counter';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MenuComponent, SampleCounterComponent],
+  imports: [RouterOutlet, MenuComponent, SampleCounter],
   template: `
     <main class="container mb-5">
       <header class="hero is-info">

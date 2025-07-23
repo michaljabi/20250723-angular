@@ -10,6 +10,6 @@ import { Component } from '@angular/core';
   `,
   styles: ``,
 })
-export class SampleCounterComponent {
+export class SampleCounter {
   randomNumber = Math.random().toFixed(2);
 }
