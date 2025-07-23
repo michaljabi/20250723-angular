@@ -9,10 +9,11 @@ import { MenuComponent } from './menu.component';
     <main class="container mb-5">
       <header class="hero is-info">
         <div class="hero-body">
-          <h1 class="title">Angular Live Theory</h1>
+          <h1 class="title">Angular Live Theory {{ sample }}</h1>
           <h4 class="subtitle">sprawdź jak działa {{ title }}!...</h4>
         </div>
       </header>
+      {{ sample }}
       <section class="columns mt-5">
         <app-menu></app-menu>
         <div class="column is-9 content">
@@ -24,4 +25,5 @@ import { MenuComponent } from './menu.component';
 })
 export class AppComponent {
   title = 'ng-living-theory';
+  sample = ':)';
 }

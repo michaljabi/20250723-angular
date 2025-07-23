@@ -79,7 +79,9 @@ import { RouterLink } from '@angular/router';
       <p class="menu-label">Część G [dodatek] - <strong>Sygnały</strong></p>
       <ul class="menu-list">
         <li>
-          <a routerLink="/signals-basics"> <em>signals</em> zamiast <em>zone.js</em> </a>
+          <a routerLink="/signals-basics">
+            <em>signals</em> zamiast <em>zone.js</em>
+          </a>
           <a routerLink="/signal-computed"> Stan wyliczany </a>
           <a routerLink="/signal-effect"> Efekty uboczne </a>
           <a routerLink="/signal-store"> Signal store </a>
