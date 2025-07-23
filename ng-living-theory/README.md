@@ -1,5 +1,31 @@
 # NgLivingTheory
 
+## Instalacja projektu
+
+1. instalacja całośći projektu
+```bash
+npm install
+```
+
+- MUSI pokazać się katalog [node_modules](./node_modules)
+
+2. uruchomienie
+```bash
+npm run start
+```
+lub
+```bash
+npm start
+```
+
+3. dopisanie własnego skryptu + uruchomienie:
+
+```bash
+npm run [nazwa-naszego-skryptu]
+```
+
+---- 
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.2.
 
 ## Development server

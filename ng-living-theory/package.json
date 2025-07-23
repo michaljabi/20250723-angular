@@ -7,7 +7,11 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint --fix"
+    "test:ci": "ng test --watch=false",
+    "lint": "ng lint --fix",
+    "make-echo":"echo Hello world",
+    "list-folder": "ls",
+    "list-folder:win": "dir"
   },
   "private": true,
   "dependencies": {
