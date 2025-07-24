@@ -7,12 +7,18 @@ import { Component, input, signal } from '@angular/core';
     <header class="mb-2 p-5 bg-warning" (click)="handleClick()">
       <h1>{{ appTitle() }} {{ exclamation() }}</h1>
       <h4>{{ 560 + 2 + 3000 }}</h4>
+      @if(user()) {
+        <div>
+          User <strong>{{ user()?.name }}</strong> is logged in!
+        </div>
+      }
     </header>
   `,
   styles: ``,
 })
 export class HeaderComponent {
   appTitle = input('Auction protal');
+  user = input<{ name: string; lastName?: string }>();
 
   titleText = 'Auction portal';
 

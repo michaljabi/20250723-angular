@@ -1,4 +1,8 @@
-<app-header appTitle="Test title" />
+<app-header appTitle="Test title" [user]="loggedInUser" />
+@if(false) {
+<!-- taki zapis sprawia że app-header poniżej będzie nową instancją za każdym razem jak warunek wyżej zmieni się z false na true  !!! -->
+<app-header />
+}
 <!-- 
 <app-header />
 <app-header [appTitle]="1 + 50 + 200 + '?'"/> 

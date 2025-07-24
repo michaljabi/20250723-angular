@@ -10,4 +10,6 @@ import { HeaderComponent } from './header/header.component';
 })
 export class App {
   protected readonly dots = signal('...');
+
+  loggedInUser = undefined; //{ name: 'Michał' };
 }
