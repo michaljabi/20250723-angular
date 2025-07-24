@@ -1,12 +1,13 @@
 import { CommonModule /*, NgClass */ } from '@angular/common';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MenuItem } from './menu-item';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-main-menu',
   // zamiast CommonModule (zawierający wiele dodatkowych dyrektyw np. ngStyle)
   // można tylko zaimportować NgClass bo tytlko to używamy na widoku
-  imports: [CommonModule /* NgClass */],
+  imports: [CommonModule, RouterLink /* NgClass */],
   template: `
     <nav class="navbar navbar-expand-lg navbar-light bg-light px-3 mb-3">
       <!-- <button
@@ -28,7 +29,7 @@ import { MenuItem } from './menu-item';
         <ul class="navbar-nav">
           @for(item of menuItems; track item.href) {
           <li class="nav-item">
-            <a class="nav-link" [href]="item.href">{{ item.title }}</a>
+            <a class="nav-link" [routerLink]="item.href">{{ item.title }}</a>
           </li>
           }
         </ul>
