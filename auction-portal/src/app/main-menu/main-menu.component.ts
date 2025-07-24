@@ -1,14 +1,29 @@
-import { Component } from '@angular/core';
+import { CommonModule /*, NgClass */ } from '@angular/common';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-main-menu',
-  imports: [],
+  // zamiast CommonModule (zawierający wiele dodatkowych dyrektyw np. ngStyle)
+  // można tylko zaimportować NgClass bo tytlko to używamy na widoku
+  imports: [CommonModule /* NgClass */],
   template: `
     <nav class="navbar navbar-expand-lg navbar-light bg-light px-3 mb-3">
-      <button class="navbar-toggler" type="button">
+      <!-- <button
+        class="navbar-toggler"
+        type="button"
+        [style]="{ backgroundColor: color }"
+        (click)="handleToggleMenu()"
+      > -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        [style]="{ backgroundColor: color }"
+        (click)="isMenuShown = !isMenuShown"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse show">
+      <!-- Można prościej (bez dyrektywy!) <div class="collapse navbar-collapse" [class.show]="isMenuShown"> -->
+      <div class="collapse navbar-collapse" [ngClass]="{ show: isMenuShown }">
         <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link" href="auctions">Aukcje</a>
@@ -25,4 +40,32 @@ import { Component } from '@angular/core';
   `,
   styles: ``,
 })
-export class MainMenuComponent {}
+export class MainMenuComponent implements OnInit, AfterViewInit {
+  isMenuShown = true;
+  color = 'transparent';
+
+  // dodatkowa metoda (alternatywa)
+  handleToggleMenu() {
+    this.isMenuShown = !this.isMenuShown;
+  }
+
+  // coding style, że nazywasz coś co pochodzi z event z przedrostkiem `handle*(event)`
+  // handleToggleMenu()
+
+  ngOnInit(): void {
+    console.log('MainMenuComponent instance created!');
+  }
+
+  ngAfterViewInit(): void {
+    console.log('MainMenuComponent mounted on DOM!');
+    // this.randomNumberEverySecond();
+  }
+
+  number = 0;
+  randomNumberEverySecond() {
+    setInterval(() => {
+      this.number = Math.random();
+      // TODO: wróć żeby pokazać ngOnDestroy! bo jest tutaj ważne...
+    }, 1000);
+  }
+}
