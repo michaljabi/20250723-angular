@@ -9,6 +9,7 @@ describe('TestMyBehaviourComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [TestMyBehaviourComponent],
+      providers: [], // Dependency Injection jeśli jest to tutaj....
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestMyBehaviourComponent);
