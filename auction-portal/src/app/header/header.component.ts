@@ -11,6 +11,7 @@ import { Component, input, output, signal } from '@angular/core';
       <div>
         User <strong>{{ user()?.name }}</strong> is logged in!
 
+        <!--  $event.stopPropagation() poniżej spowoduje że nie wywołamy (click) na elemencie <header> powyżej (ponieważ eventy w DOM w przeglądarce domyślie "bubble"ują w górę!) -->
         <button
           class="btn btn-danger"
           (click)="logOut.emit(1); $event.stopPropagation()"
