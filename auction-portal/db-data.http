@@ -1,0 +1,18 @@
+
+### Get all auctions:
+GET http://localhost:3000/auctions
+
+
+### Get one auction
+GET http://localhost:3000/auctions/2
+
+
+### Add one auction
+POST http://localhost:3000/auctions
+Content-Type: application/json
+
+{
+    "title":"Hello test",
+    "imgUrl": "https://picsum.photos/id/148/600/600",
+    "price": 300
+}
