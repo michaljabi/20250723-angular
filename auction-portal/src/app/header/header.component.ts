@@ -1,17 +1,19 @@
-import { Component, signal } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 
 @Component({
   selector: 'app-header',
   imports: [],
   template: `
     <header class="mb-2 p-5 bg-warning" (click)="handleClick()">
-      <h1>{{ titleText }} {{ exclamation() }}</h1>
+      <h1>{{ appTitle() }} {{ exclamation() }}</h1>
       <h4>{{ 560 + 2 + 3000 }}</h4>
     </header>
   `,
   styles: ``,
 })
 export class HeaderComponent {
+  appTitle = input('Auction protal');
+
   titleText = 'Auction portal';
 
   exclamation = signal('!');
