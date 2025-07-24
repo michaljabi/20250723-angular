@@ -1,4 +1,4 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, input, output, signal } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +8,16 @@ import { Component, input, signal } from '@angular/core';
       <h1>{{ appTitle() }} {{ exclamation() }}</h1>
       <h4>{{ 560 + 2 + 3000 }}</h4>
       @if(user()) {
-        <div>
-          User <strong>{{ user()?.name }}</strong> is logged in!
-        </div>
+      <div>
+        User <strong>{{ user()?.name }}</strong> is logged in!
+
+        <button
+          class="btn btn-danger"
+          (click)="logOut.emit(1); $event.stopPropagation()"
+        >
+          Log out
+        </button>
+      </div>
       }
     </header>
   `,
@@ -19,6 +26,9 @@ import { Component, input, signal } from '@angular/core';
 export class HeaderComponent {
   appTitle = input('Auction protal');
   user = input<{ name: string; lastName?: string }>();
+
+  // logout nie musi NIC emitować output() - ale tutaj poglądowo $event pokazanez przesłaniem number'a
+  logOut = output<number>();
 
   titleText = 'Auction portal';
 

@@ -11,5 +11,10 @@ import { HeaderComponent } from './header/header.component';
 export class App {
   protected readonly dots = signal('...');
 
-  loggedInUser = undefined; //{ name: 'Michał' };
+  loggedInUser? = { name: 'Michał' };
+
+  logOutUser(value: number) {
+    this.loggedInUser = undefined;
+    console.log('Logged out user with id', value);
+  }
 }
