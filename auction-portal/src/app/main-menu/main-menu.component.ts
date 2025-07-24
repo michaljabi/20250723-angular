@@ -1,5 +1,6 @@
 import { CommonModule /*, NgClass */ } from '@angular/common';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { MenuItem } from './menu-item';
 
 @Component({
   selector: 'app-main-menu',
@@ -25,15 +26,11 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
       <!-- Można prościej (bez dyrektywy!) <div class="collapse navbar-collapse" [class.show]="isMenuShown"> -->
       <div class="collapse navbar-collapse" [ngClass]="{ show: isMenuShown }">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="auctions">Aukcje</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="promotions">Promocje</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="advices">Podpowiadamy</a>
-          </li>
+          @for(item of menuItems; track item.href) {
+            <li class="nav-item">
+              <a class="nav-link" [href]="item.href">{{ item.title }}</a>
+            </li>
+          }
         </ul>
       </div>
     </nav>
@@ -43,6 +40,16 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 export class MainMenuComponent implements OnInit, AfterViewInit {
   isMenuShown = true;
   color = 'transparent';
+
+  menuItems: MenuItem[] = [
+    // bez slasha, jak jesteśmy na ścieżce: http://localhost:4200/hello/world/of/tanks
+    // http://localhost:4200/hello/world/of/tanks/auctions
+    // a ze slashem, będzie i tak absolutnie!
+    // http://localhost:4200/auctions
+    { href: '/auctions', title: 'Aukcje' },
+    { href: '/promotions', title: 'Promocje' },
+    { href: '/advices', title: 'Podpowiadamy' },
+  ];
 
   // dodatkowa metoda (alternatywa)
   handleToggleMenu() {
