@@ -27,9 +27,9 @@ import { MenuItem } from './menu-item';
       <div class="collapse navbar-collapse" [ngClass]="{ show: isMenuShown }">
         <ul class="navbar-nav">
           @for(item of menuItems; track item.href) {
-            <li class="nav-item">
-              <a class="nav-link" [href]="item.href">{{ item.title }}</a>
-            </li>
+          <li class="nav-item">
+            <a class="nav-link" [href]="item.href">{{ item.title }}</a>
+          </li>
           }
         </ul>
       </div>
@@ -48,7 +48,6 @@ export class MainMenuComponent implements OnInit, AfterViewInit {
     // http://localhost:4200/auctions
     { href: '/auctions', title: 'Aukcje' },
     { href: '/promotions', title: 'Promocje' },
-    { href: '/advices', title: 'Podpowiadamy' },
   ];
 
   // dodatkowa metoda (alternatywa)
@@ -61,6 +60,9 @@ export class MainMenuComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     console.log('MainMenuComponent instance created!');
+    setTimeout(() => {
+      this.menuItems.push({ href: '/advices', title: 'Podpowiadamy' });
+    }, 3000);
   }
 
   ngAfterViewInit(): void {
