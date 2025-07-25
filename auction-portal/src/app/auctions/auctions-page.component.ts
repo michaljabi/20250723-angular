@@ -1,21 +1,20 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { AuctionsResourceService } from './auctions-resource.service';
-import { JsonPipe } from '@angular/common';
 import { AuctionItem } from './auction-item';
+import { AuctionCardComponent } from './auction-card/auction-card.component';
 // import { finalize } from 'rxjs';
 
 @Component({
   // ponieważ nie ma selectora, pokazujemy innym że to ma być komponent w całości
   // zarządzany przez Router!
-  imports: [JsonPipe],
+  imports: [AuctionCardComponent],
   template: `
     <div>
       <h2>Lista aukcji</h2>
-      <div class="row">
+      <div class="row gap-4">
         @for(auction of auctions; track auction.id) {
         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-          <!-- TODO: dodaj wyświetlanie aukcji (komponent) -->
-          {{ auction | json }}
+          <app-auction-card [auction]="auction" />
         </div>
         } @empty { @if(isLoading) {
         <div class="alert alert-info">Ładuje aukcje...</div>

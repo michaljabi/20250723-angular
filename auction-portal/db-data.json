@@ -26,19 +26,6 @@
       "imgUrl": "https://picsum.photos/id/183/600/600",
       "description": "Zabytkowy ogórek",
       "price": 1200
-    },
-    {
-      "id": "5",
-      "title": "Samochód 2",
-      "imgUrl": "https://picsum.photos/id/183/600/600",
-      "description": "Zabytkowy ogórek",
-      "price": 1200
-    },
-    {
-      "id": "44b4",
-      "title": "Hello test",
-      "imgUrl": "https://picsum.photos/id/148/600/600",
-      "price": 300
     }
   ]
 }
