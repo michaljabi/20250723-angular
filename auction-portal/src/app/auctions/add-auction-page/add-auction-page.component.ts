@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuctionItem } from '../auction-item';
+import { AuctionsResourceService } from '../auctions-resource.service';
 
 @Component({
   imports: [SharedModule, ReactiveFormsModule],
@@ -42,7 +43,7 @@ import { AuctionItem } from '../auction-item';
                 <input
                   id="auctionPrice"
                   type="number"
-                  name="price"
+                  formControlName="price"
                   class="form-control"
                 />
               </div>
@@ -74,7 +75,7 @@ import { AuctionItem } from '../auction-item';
                   id="auctionDescription"
                   rows="5"
                   class="form-control"
-                  name="description"
+                  formControlName="description"
                 ></textarea>
               </div>
             </div>
@@ -100,10 +101,14 @@ import { AuctionItem } from '../auction-item';
   `,
 })
 export class AddAuctionPageComponent {
+  auctionResourceService = inject(AuctionsResourceService);
+
   private fb = inject(FormBuilder);
   newAuctionForm = this.fb.group({
     title: ['', Validators.required],
-    imgId: ['1', [Validators.min(1), Validators.max(1080)]],
+    price: [0, Validators.required],
+    imgId: [1, [Validators.min(1), Validators.max(1080)]],
+    description: [''],
   });
 
   get imgUrl() {
@@ -116,7 +121,29 @@ export class AddAuctionPageComponent {
       return;
     }
     console.log(this.newAuctionForm.value);
-    // const newAuction: Omit<AuctionItem, 'id'> = {};
+    // destructuring:
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring
+    // const {title, price, description} = this.newAuctionForm.value;
+
+    const newAuction: Omit<AuctionItem, 'id'> = {
+      title: String(this.newAuctionForm.value.title),
+      imgUrl: this.imgUrl,
+      price: Number(this.newAuctionForm.value.price),
+      description: this.newAuctionForm.value.description
+        ? String(this.newAuctionForm.value.description)
+        : undefined,
+    };
     // send AJAX....
+    this.auctionResourceService.addOne(newAuction).subscribe({
+      next: (auction: AuctionItem) => {
+        // tutaj warca auction z id
+        console.log('NEW AUCTION added', auction);
+        // wszystko ok, reset formy
+        this.newAuctionForm.reset({ imgId: 1 });
+      },
+      error: (e) => {
+        console.error(e);
+      },
+    });
   }
 }

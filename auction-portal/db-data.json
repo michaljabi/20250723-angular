@@ -26,6 +26,12 @@
       "imgUrl": "https://picsum.photos/id/183/600/600",
       "description": "Zabytkowy ogórek",
       "price": 1200
+    },
+    {
+      "id": "a833",
+      "title": "fonik",
+      "imgUrl": "https://picsum.photos/id/3/600/600",
+      "price": 2000
     }
   ]
 }
