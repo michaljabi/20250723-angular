@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { AuctionItem } from './auction-item';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 // to jest STATELESS service
 // nie przechowuje żadnego stanu danych.
@@ -12,7 +13,7 @@ import { Observable } from 'rxjs';
 export class AuctionsResourceService {
   // call to ajax!
 
-  private readonly apiURL = 'http://localhost:3000/auctions'; // TODO: (ng g environments)
+  private readonly apiURL = environment.baseApiURL + '/auctions';
   private readonly httpClient = inject(HttpClient);
 
   getAll(): Observable<AuctionItem[]> {
