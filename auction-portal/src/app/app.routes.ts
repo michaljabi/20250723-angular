@@ -3,6 +3,8 @@ import { AuctionsPageComponent } from './auctions/auctions-page.component';
 import { PromotionsPageComponent } from './auctions/promotions-page.component';
 import { AdvicePageComponent } from './advice/advice-page/advice-page.component';
 import { AdviceDetailsComponent } from './advice/advice-page/advice-details.component';
+import { AddAuctionPageComponent } from './auctions/add-auction-page/add-auction-page.component';
+import { CartPageComponent } from './auctions/cart-page/cart-page.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/auctions', pathMatch: 'full' },
@@ -22,4 +24,6 @@ export const routes: Routes = [
       },
     ],
   },
+  { path: 'add-auction', component: AddAuctionPageComponent },
+  { path: 'cart', component: CartPageComponent },
 ];

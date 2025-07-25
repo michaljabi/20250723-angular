@@ -2,12 +2,13 @@ import { CommonModule /*, NgClass */ } from '@angular/common';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MenuItem } from './menu-item';
 import { RouterLink } from '@angular/router';
+import { SharedModule } from '../../shared/shared.module';
 
 @Component({
   selector: 'app-main-menu',
   // zamiast CommonModule (zawierający wiele dodatkowych dyrektyw np. ngStyle)
   // można tylko zaimportować NgClass bo tytlko to używamy na widoku
-  imports: [CommonModule, RouterLink /* NgClass */],
+  imports: [CommonModule, RouterLink, SharedModule /* NgClass */],
   template: `
     <nav class="navbar navbar-expand-lg navbar-light bg-light px-3 mb-3">
       <!-- <button
@@ -33,6 +34,14 @@ import { RouterLink } from '@angular/router';
           </li>
           }
         </ul>
+      </div>
+      <div class="text-light d-flex gap-2">
+        <a class="btn btn-outline-primary" routerLink="/add-auction">
+          <fa-icon icon="plus"></fa-icon> Dodaj
+        </a>
+        <a class="btn btn-outline-secondary" routerLink="/cart">
+          <fa-icon icon="shopping-basket"></fa-icon> Koszyk
+        </a>
       </div>
     </nav>
   `,
