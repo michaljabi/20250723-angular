@@ -2,24 +2,26 @@ import { Component, inject, OnInit } from '@angular/core';
 import { AuctionsResourceService } from './auctions-resource.service';
 import { AuctionItem } from './auction-item';
 import { AuctionCardComponent } from './auction-card/auction-card.component';
+import { SharedModule } from '../shared/shared.module';
 // import { finalize } from 'rxjs';
 
 @Component({
   // ponieważ nie ma selectora, pokazujemy innym że to ma być komponent w całości
   // zarządzany przez Router!
-  imports: [AuctionCardComponent],
+  imports: [AuctionCardComponent, SharedModule],
   template: `
     <div>
       <h2>Lista aukcji</h2>
+      <app-search-bar (search)="handleSearchFor($event)" />
       <div class="row gap-4">
-        @for(auction of auctions; track auction.id) {
+        @for(auction of filteredAuctions; track auction.id) {
         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
           <app-auction-card [auction]="auction" />
         </div>
         } @empty { @if(isLoading) {
-        <div class="alert alert-info">Ładuje aukcje...</div>
+        <app-notification> Ładuje <strong>aukcje</strong>... </app-notification>
         } @if(errorMessage) {
-        <div class="alert alert-danger">{{ errorMessage }}</div>
+        <app-notification type="danger"> {{ errorMessage }} </app-notification>
         } }
       </div>
     </div>
@@ -33,6 +35,17 @@ export class AuctionsPageComponent implements OnInit {
   auctions: AuctionItem[] = []; //this.auctionResourceService.getAll();
   isLoading = false;
   errorMessage = '';
+  searchText = '';
+
+  handleSearchFor(value: string) {
+    this.searchText = value.toLowerCase();
+  }
+
+  get filteredAuctions() {
+    return this.auctions.filter((a) =>
+      a.title.toLowerCase().includes(this.searchText)
+    );
+  }
 
   ngOnInit(): void {
     this.isLoading = true;
