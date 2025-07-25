@@ -16,7 +16,9 @@ import { JsonPipe } from '@angular/common';
   // providers: [AuctionsResourceService],
 })
 export class AuctionsPageComponent {
-  auctions = [{}, {}, {}];
-
+  
   auctionResourceService = inject(AuctionsResourceService);
+
+  auctions = this.auctionResourceService.getAll();
+  
 }
