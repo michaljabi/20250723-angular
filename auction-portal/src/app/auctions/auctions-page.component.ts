@@ -1,10 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AuctionsResourceService } from './auctions-resource.service';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   // ponieważ nie ma selectora, pokazujemy innym że to ma być komponent w całości
   // zarządzany przez Router!
-  imports: [],
-  template: ` <p>auctions-page works!</p> `,
+  imports: [JsonPipe],
+  template: `
+    <div>
+      <h2>Lista aukcji</h2>
+      <div>{{ auctions | json }}</div>
+    </div>
+  `,
   styles: ``,
+  // providers: [AuctionsResourceService],
 })
-export class AuctionsPageComponent {}
+export class AuctionsPageComponent {
+  auctions = [{}, {}, {}];
+
+  auctionResourceService = inject(AuctionsResourceService);
+}

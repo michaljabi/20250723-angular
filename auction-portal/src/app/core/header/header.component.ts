@@ -25,6 +25,8 @@ import { Component, input, output, signal } from '@angular/core';
   styles: ``,
 })
 export class HeaderComponent {
+  //auctionResourceService = inject(AuctionsResourceService);
+
   appTitle = input('Auction protal');
   user = input<{ name: string; lastName?: string }>();
 

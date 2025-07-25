@@ -7,7 +7,9 @@ import { AuctionItem } from './auction-item';
 export class AuctionsResourceService {
   // call to ajax!
 
-  getAll() {}
+  getAll() {
+    return [{ name: '1' }, {}, {}];
+  }
 
   addOne(auction: AuctionItem) {}
 }
