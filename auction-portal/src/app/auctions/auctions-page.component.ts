@@ -11,7 +11,7 @@ import { SharedModule } from '../shared/shared.module';
   imports: [AuctionCardComponent, SharedModule],
   template: `
     <div>
-      <h2>Lista aukcji</h2>
+      <h2>Lista aukcji ({{ noOfAuctions }})</h2>
       <app-search-bar (search)="handleSearchFor($event)" />
       <div class="row gap-4">
         @for(auction of filteredAuctions; track auction.id) {
@@ -36,6 +36,8 @@ export class AuctionsPageComponent implements OnInit {
   isLoading = false;
   errorMessage = '';
   searchText = '';
+  // noOfAuctions = 0; // nie imperatywnie,
+  // tylko chcemy wyliczyc na bazie innych danych
 
   handleSearchFor(value: string) {
     this.searchText = value.toLowerCase();
@@ -45,6 +47,10 @@ export class AuctionsPageComponent implements OnInit {
     return this.auctions.filter((a) =>
       a.title.toLowerCase().includes(this.searchText)
     );
+  }
+
+  get noOfAuctions() {
+    return this.filteredAuctions.length;
   }
 
   ngOnInit(): void {
