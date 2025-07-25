@@ -21,6 +21,25 @@ describe('TestMyBehaviourComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should restet amount of likes to "zero likes" after click "reset" button', () => {
+    const h4Header = fixture.nativeElement.querySelector('h4');
+    const resetButton = fixture.nativeElement.querySelector(
+      'button[title="reset"]',
+    );
+    const likeButton = fixture.nativeElement.querySelector(
+      'button[title="I like"]',
+    );
+    likeButton.click();
+    likeButton.click();
+    fixture.detectChanges();
+    expect(h4Header.textContent).toContain('masz 2 lajki');
+
+    resetButton.click();
+    fixture.detectChanges();
+
+    expect(h4Header.textContent).toContain('zero lajków');
+  });
+
   it('should start with "zero likes"', () => {
     // Given (Arrange)
     const h4Header = fixture.nativeElement.querySelector('h4');

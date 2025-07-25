@@ -22,6 +22,9 @@ import { I18nPluralPipe } from '@angular/common';
         <button class="button" title="I dislike" (click)="handleCounterAdd(-1)">
           👎
         </button>
+        <button class="button" title="reset" (click)="count = 0">
+          Zacznij od zera...
+        </button>
       </fieldset>
     </div>
   `,
