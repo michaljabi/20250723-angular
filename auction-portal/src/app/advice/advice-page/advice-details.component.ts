@@ -1,14 +1,22 @@
-import { Component } from '@angular/core';
+import { JsonPipe, UpperCasePipe } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  imports: [],
+  imports: [UpperCasePipe, JsonPipe],
   template: `
-    <p>
-      advice-details works!
-    </p>
+    <div>
+      Pobieram {{ entityName | uppercase }} id: {{ adviceId }}
+      <hr />
+      {{ user | json }}
+    </div>
   `,
-  styles: ``
+  styles: ``,
 })
 export class AdviceDetailsComponent {
+  user = { name: 'Michał' };
+  entityName = 'artykuł';
+  adviceId = '';
 
+  activatedRoute = inject(ActivatedRoute);
 }
