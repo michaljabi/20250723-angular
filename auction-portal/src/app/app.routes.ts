@@ -15,7 +15,11 @@ export const routes: Routes = [
     component: AdvicePageComponent,
     children: [
       { path: '', component: AdviceDetailsComponent, pathMatch: 'full' },
-      { path: ':id', component: AdviceDetailsComponent },
+      { path: ':majId', component: AdviceDetailsComponent },
+      {
+        path: ':majId/:supperPath/:sample',
+        component: AdviceDetailsComponent,
+      },
     ],
   },
 ];
