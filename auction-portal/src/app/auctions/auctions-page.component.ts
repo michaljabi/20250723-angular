@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { AuctionsResourceService } from './auctions-resource.service';
 import { JsonPipe } from '@angular/common';
+import { AuctionItem } from './auction-item';
 
 @Component({
   // ponieważ nie ma selectora, pokazujemy innym że to ma być komponent w całości
@@ -15,10 +16,17 @@ import { JsonPipe } from '@angular/common';
   styles: ``,
   // providers: [AuctionsResourceService],
 })
-export class AuctionsPageComponent {
-  
+export class AuctionsPageComponent implements OnInit {
   auctionResourceService = inject(AuctionsResourceService);
 
-  auctions = this.auctionResourceService.getAll();
-  
+  auctions: AuctionItem[] = []; //this.auctionResourceService.getAll();
+
+  ngOnInit(): void {
+    this.auctionResourceService.getAll().subscribe({
+      next: (auctions: AuctionItem[]) => {
+        this.auctions = auctions;
+      },
+      error: () => {},
+    });
+  }
 }
